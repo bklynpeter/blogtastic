@@ -1,20 +1,6 @@
 // DEPENDENCIES //
 const mongoose = require('mongoose');
-
-
-// CONNECT TO MONGODB //
-const MONGO_URI =
-'mongodb+srv://bklynpeter:334070aa@codesmith.saamf.mongodb.net/blogtastic?retryWrites=true&w=majority';
-
-mongoose.connect(MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  dbName: 'blogtastic'
-})
-  .then(() => console.log('Connected to Mongo DB.'))
-  .catch(err => console.log(err));
-
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
 
 // BLOGPOST SCHEMA //
