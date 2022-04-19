@@ -1,18 +1,22 @@
 const bloggerController = require('../controllers/bloggerController');
 const express = require('express');
-const router = express.Router();
 const mongoose = require('mongoose');
 
 
-router.post('/',
+const bloggerRouter = express.Router();
+
+bloggerRouter.post('/',
   bloggerController.createBlogger,
   (req, res) => {
+    // console.log(res.body || 'whoops!')
     res.status(200).json(res.locals.newBlogger);
   }
 );
 
-router.get('/:id',
-  bloggerController.getOneBlogger,
+
+
+bloggerRouter.get('/:id',
+  bloggerController.findBlogger,
   (req, res) => {
       res.status(200).json(res.locals.foundBlogger);
     }

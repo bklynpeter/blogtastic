@@ -8,7 +8,7 @@ module.exports = {
     },
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'build'),
+        path: path.resolve('/build'),
     },
     mode:  'development', //process.enc.NODE_ENV,
     module: {
@@ -36,7 +36,7 @@ module.exports = {
     devServer: {
         static: {
             publicPath: '/build',
-            directory: path.resolve(_dirname, 'public'),
+            directory: path.resolve('/public'),
         },
         proxy: {
             '/api': 'http://localhost:3000',
