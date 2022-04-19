@@ -37,7 +37,7 @@ const bloggerSchema = new Schema({
     type: String,
     required: true,
     },
-    headline: {
+    bio: {
         type: String,
         required: true,
     },
@@ -47,8 +47,5 @@ const Blogger = mongoose.model('blogger', bloggerSchema);
 
 
 // EXPORT SCHEMATA //
-module.exports = {
-  Blogger,
-  Blogpost,
-};
+module.exports = {Blogger, Blogpost};
 

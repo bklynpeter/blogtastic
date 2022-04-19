@@ -2,15 +2,15 @@
 const path = require('path');
 const express = require('express');
 const bloggerRouter = require('./routes/bloggerRouter');
-const blogpostRouter = require('./routes/blogpostRouter');
+// const blogpostRouter = require('./routes/blogpostRouter');
 const connectDB = require('./connect');
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 
 // connection
 const app = express();
 const PORT = 3000;
 const MONGO_URI =
-'mongodb+srv://bklynpeter:334070aa@codesmith.saamf.mongodb.net/blogtastic?retryWrites=true&w=majority';
+    'mongodb+srv://bklynpeter:334070aa@codesmith.saamf.mongodb.net/blogtastic?retryWrites=true&w=majority';
 
 
 //handle parsing
@@ -23,9 +23,9 @@ app.use(express.static(path.resolve(__dirname, '../client')));
 
 // route handlers
 app.use('/blogger', bloggerRouter);
-app.use('/blogpost', blogpostRouter);
+// app.use('/blogpost', blogpostRouter);
 
-// catch-all route handler for any requests to an unknown route
+// for unknown
 app.use((req, res) => res.status(404).send('This is not the page you\'re looking for...'));
 
 
@@ -50,12 +50,9 @@ const start = async () => {
       console.log(`Server listening on port: ${PORT || 3000}...`);
     });
   } catch (error) {
-      console.log(error);
-      console.log('Failed to connect to the database, server is not running.');
+      console.log(error, 'Failed to connect to the database, server is not running.');
   }
-
 };
-
 start();
 
 module.exports = app;

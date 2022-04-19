@@ -10,7 +10,7 @@ module.exports = {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'build'),
     },
-    mode:  process.enc.NODE_ENV,
+    mode:  'development', //process.enc.NODE_ENV,
     module: {
         rules: [
             {
