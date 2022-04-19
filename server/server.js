@@ -4,6 +4,7 @@ const express = require('express');
 const bloggerRouter = require('./routes/bloggerRouter');
 // const blogpostRouter = require('./routes/blogpostRouter');
 const connectDB = require('./connect');
+const bodyParser = require('body-parser');
 // const mongoose = require('mongoose');
 
 // connection
@@ -14,12 +15,16 @@ const MONGO_URI =
 
 
 //handle parsing
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //static files
 app.use(express.static(path.resolve(__dirname, '../client')));
 
+// app.get('/blogger', (req, res) => {
+//   // console.log('html GET request;');
+//   return res.status(200).json('hello');
+// })
 
 // route handlers
 app.use('/blogger', bloggerRouter);

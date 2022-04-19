@@ -6,28 +6,28 @@ const mongoose = require('mongoose');
 const bloggerRouter = express.Router();
 
 bloggerRouter.post('/',
-  bloggerController.createBlogger,
+bloggerController.createBlogger,
   (req, res) => {
-    // console.log(res.body || 'whoops!')
     res.status(200).json(res.locals.newBlogger);
+    console.log('response: ', res.locals.newBlogger);
   }
 );
 
-
-
-bloggerRouter.get('/:id',
-  bloggerController.findBlogger,
-  (req, res) => {
-      res.status(200).json(res.locals.foundBlogger);
-    }
-);
-
-// router.get('/',
-// bloggerController.getAllBloggers,
+// bloggerRouter.get('/all',
+//   bloggerController.getAllBloggers,
 //   (req, res) => {
 //     res.status(200).json(res.locals.bloggers);
 //   }
 // );
+
+bloggerRouter.get('/:id',
+  bloggerController.findBlogger,
+  (req, res) => {
+    console.log('result: ', res.locals.foundBlogger)
+      res.status(200).json(res.locals.foundBlogger);
+    }
+);
+
 
 // router.put('/:id',
 // bloggerController.updateBlogger,
