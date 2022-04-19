@@ -1,0 +1,39 @@
+{
+  "name": "blogtastic",
+  "version": "1.0.0",
+  "description": "Record and make available your innermost thoughts.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Peter Steinberg",
+  "license": "ISC",
+  "dependencies": {
+    "browserify": "^17.0.0",
+    "css-loader": "^6.7.1",
+    "express": "^4.17.3",
+    "gulp": "^4.0.2",
+    "prop-types": "^15.8.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "sass": "^1.50.1",
+    "sass-loader": "^12.6.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.72.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.9",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "babel": "^6.23.0",
+    "babel-loader": "^8.2.4",
+    "concurrently": "^7.1.0",
+    "cross-env": "^7.0.3",
+    "html-webpack-plugin": "^5.5.0",
+    "isomorphic-fetch": "^3.0.0",
+    "nodemon": "^2.0.15",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.8.1"
+  }
+}
