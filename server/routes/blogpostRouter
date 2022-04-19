@@ -14,7 +14,6 @@ router.post('/',
 router.get('/:id',
 blogController.getOneBlogpost,
 (req, res) => {
-    // console.log('Coming from API file', res.locals.getCharacters);
     res.status(200).json(res.locals.getCharacters);
   }
 );
@@ -22,7 +21,6 @@ blogController.getOneBlogpost,
 router.get('/',
 blogController.getAllBlogposts,
   (req, res) => {
-    // console.log('Coming from API file', res.locals.getCharacters);
     res.status(200).json(res.locals.getCharacters);
   }
 );
@@ -37,4 +35,4 @@ blogController.deleteBlogpost,
   (req, res) => res.status(200).json({})
 );
 
-module.exports = router;
+module.exports = blogpostRouter;

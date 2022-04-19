@@ -1,0 +1,39 @@
+const bloggerController = require('../controllers/bloggerController');
+
+const express = require('express');
+
+const router = express.Router();
+
+router.post('/',
+bloggerController.createBlogger,
+  (req, res) => {
+    res.status(200).json(res.locals.postBlog);
+  }
+);
+
+router.get('/:id',
+bloggerController.getOneBlogger,
+(req, res) => {
+    res.status(200).json(res.locals.getCharacters);
+  }
+);
+
+router.get('/',
+bloggerController.getAllBloggers,
+  (req, res) => {
+    res.status(200).json(res.locals.getCharacters);
+  }
+);
+
+router.put('/:id',
+bloggerController.editBlogger,
+  (req, res) => res.status(200).json({})
+);
+
+router.delete('/:id',
+bloggerController.deleteBlogger,
+  (req, res) => res.status(200).json({})
+);
+
+
+module.exports = bloggerRouter;
