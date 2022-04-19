@@ -13,12 +13,12 @@ bloggerController.createBlogger,
   }
 );
 
-// bloggerRouter.get('/all',
-//   bloggerController.getAllBloggers,
-//   (req, res) => {
-//     res.status(200).json(res.locals.bloggers);
-//   }
-// );
+bloggerRouter.get('/all',
+  bloggerController.findAllBloggers,
+  (req, res) => {
+    res.status(200).json(res.locals.allBloggers);
+  }
+);
 
 bloggerRouter.get('/:id',
   bloggerController.findBlogger,

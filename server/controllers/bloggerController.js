@@ -43,6 +43,23 @@ const bloggerController = {
         });
     },
 
+    findAllBloggers: (req, res, next) => {
+        // console.log(req.params.id)
+        Blogger.find({}, (err, foundBloggers) => {
+            if(err){
+                return next({
+                log: 'There\'s an error in findAllBloggers',
+                status: 500,
+                message: {err: 'Missing or incorrect info to find all bloggers.'}
+                })
+            } else {
+                res.locals.allBloggers = foundBloggers;
+                console.log('res.locals.foundBlogger', res.locals.allBloggers)
+            }
+            next();
+        });
+    },
+
    
 };
 
