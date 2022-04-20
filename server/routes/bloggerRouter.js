@@ -1,58 +1,69 @@
-const bloggerController = require('../controllers/bloggerController');
 const express = require('express');
-const mongoose = require('mongoose');
+const { Blogger } = require('../models/blogModels');
+const router = express.Router();
 
-
-const bloggerRouter = express.Router();
-
-bloggerRouter.post('/',
-bloggerController.createBlogger,
-  (req, res) => {
-    res.status(200).json(res.locals.newBlogger);
-    console.log('response: ', res.locals.newBlogger);
+// new post
+router.post('/', async(req, res) => {
+  try {
+    // const {firstName, lastName, bio} = req.body;
+    // if(!firstName || !lastName || !bio){
+    //   res.status(500).send(error)
+    // }
+    const newBlogger = await new Blogger({firstName, lastName, bio}).save();
+    res.status(200).send(newBlogger)
+  } catch (error) {
+    res.status(500).send(error)
   }
-);
+})
 
-bloggerRouter.get('/all',
-  bloggerController.findAllBloggers,
-  (req, res) => {
-    res.status(200).json(res.locals.allBloggers);
+//get all
+router.get('/', async(req, res) => {
+  try {
+    const allBloggers = await Blogger.find();
+    res.status(200).send(allBloggers)
+  } catch (error) {
+    res.status(500).send(error)
   }
-);
+})
 
-bloggerRouter.get('/:id',
-  bloggerController.findBlogger,
-  (req, res) => {
-    console.log('result: ', res.locals.foundBlogger)
-      res.status(200).json(res.locals.foundBlogger);
-    }
-);
+//get by ID
+router.get('/:id', async(req, res) => {
+  try {
+    const oneBlogger = await Blogger.findById(req.params.id);
+    res.status(200).send(oneBlogger)
+  } catch (error) {
+    res.status(500).send(error)
+  }
+})
 
-bloggerRouter.put('/:id',
-  bloggerController.updateBlogger,
-  (req, res) => {
-    console.log('result: ', res.locals.updatedBlogger)
-      res.status(200).json(res.locals.updatedBlogger);
-    }
-);
+//update by ID
+router.put('/:id', async (req, res) => {
+  try {
+    const updatedBlogger = await Blogger.findOneAndUpdate({_id: req.params.id}, req.body)
+    res.status(200).send(updatedBlogger)
+  } catch (error) {
+    res.status(500).send(error)
+  }
+})
 
-bloggerRouter.delete('/:id',
-  bloggerController.updateBlogger,
-  (req, res) => {
-    console.log('deleted: ', res.locals.deletedBlogger)
-      res.status(200).json(res.locals.deletedBlogger);
-    }
-);
+// delete by ID
+router.delete('/:id', async (req, res) => {
+  try {
+    const deletedBlogger = await Blogger.findByIdAndDelete(req.params.id);
+    res.status(200).send(deletedBlogger);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+})
 
-// router.put('/:id',
-// bloggerController.updateBlogger,
-//   (req, res) => res.status(200).json({})
-// );
+// delete ALL
+router.delete('/all', async (req, res) => {
+  try {
+    const deleteAllBloggers = await Blogger.deleteMany({});
+    res.status(200).send(deleteAllBloggers);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+})
 
-// router.delete('/:id',
-// bloggerController.deleteBlogger,
-//   (req, res) => res.status(200).json({})
-// );
-
-
-module.exports = bloggerRouter;
+module.exports = router;

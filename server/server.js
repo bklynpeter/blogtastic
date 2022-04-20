@@ -1,17 +1,16 @@
 // dependencies
 const path = require('path');
 const express = require('express');
-const bloggerRouter = require('./routes/bloggerRouter');
+// const bloggerRouter = require('./routes/bloggerRouter');
+const router = require('./routes/bloggerRouter');
 // const blogpostRouter = require('./routes/blogpostRouter');
-const connectDB = require('./connect');
+const connect = require('./connect');
 const bodyParser = require('body-parser');
-// const mongoose = require('mongoose');
 
 // connection
 const app = express();
 const PORT = 3000;
-const MONGO_URI =
-    'mongodb+srv://bklynpeter:334070aa@codesmith.saamf.mongodb.net/blogtastic?retryWrites=true&w=majority';
+
 
 
 //handle parsing
@@ -21,14 +20,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //static files
 app.use(express.static(path.resolve(__dirname, '../client')));
 
-// app.get('/blogger', (req, res) => {
-//   // console.log('html GET request;');
-//   return res.status(200).json('hello');
-// })
 
 // route handlers
-app.use('/blogger', bloggerRouter);
+app.use('/blogger', router);
 // app.use('/blogpost', blogpostRouter);
+
 
 // for unknown
 app.use((req, res) => res.status(404).send('This is not the page you\'re looking for...'));
@@ -50,7 +46,7 @@ app.use((err, req, res, next) => {
 // start database and then server
 const start = async () => {
   try {
-    await connectDB(MONGO_URI);
+    await connect();
     app.listen(PORT, () => {
       console.log(`Server listening on port: ${PORT || 3000}...`);
     });

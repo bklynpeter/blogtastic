@@ -1,18 +1,18 @@
-const { Blogger, Blogpost } = require('../models/blogModels');
+const { Blogger, Blogpost } = require('../../models/blogModels');
 const mongoose = require('mongoose');
 
 const bloggerController = {
 
     createBlogger : (req, res, next) => {
-        const { firstName, lastName, bio } = req.body
-        if(!firstName || !lastName || !bio){
+        const { content, priority, complete } = req.body
+        if(!content || !priority || !complete){
             return next({
                 log: 'There\'s an error in createBlogger',
                 status: 500,
-                message: {err: `Missing info to create new blogger: First Name: ${firstName}, Last Name: ${lastName}, Bio: ${bio}`}
+                message: {err: `Missing info to create new blogger: Content: ${content}, Priority: ${priority}, Complete: ${complete}`}
             });
         } 
-        const newBlogger = { firstName, lastName, bio }
+        const newBlogger = { content, priority, complete }
         Blogger.create(newBlogger, (err, newBlogger) => {
             if(err){
                 return next('Error in createBlogger: ', err)
@@ -59,8 +59,8 @@ const bloggerController = {
 
     updateBlogger: (req, res, next) => {
         console.log('update blogger')
-        const { firstName, lastName, bio } = req.body
-        const update = {firstName, lastName, bio}
+        const { content, priority, complete } = req.body
+        const update = {content, priority, complete}
         Blogger.findOneAndUpdate(req.params.id, update, (err, updatedBlogger) => {
             if(err){
                 return next({
