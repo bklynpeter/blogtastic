@@ -5,14 +5,10 @@ const router = express.Router();
 // new post
 router.post('/', async(req, res) => {
   try {
-    // const {firstName, lastName, bio} = req.body;
-    // if(!firstName || !lastName || !bio){
-    //   res.status(500).send(error)
-    // }
-    const newBlogger = await new Blogger({firstName, lastName, bio}).save();
+    const newBlogger = await new Blogger(req.body).save();
     res.status(200).send(newBlogger)
-  } catch (error) {
-    res.status(500).send(error)
+  } catch (err) {
+    res.status(500).send(err)
   }
 })
 

@@ -15,6 +15,7 @@ const bloggerSchema = new Schema({
     },
     complete: {
         type: Boolean,
+        required: false,
         default: false,
     },
 }, { timestamps: true });
