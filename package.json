@@ -4,9 +4,9 @@
   "description": "Record and make available your innermost thoughts.",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=production node server/server.js",
+    "start": "NODE_ENV=production node /index.js",
     "build": "NODE_ENV=production webpack",
-    "dev": "concurrently \"cross-env NODE_ENV=development nodemon server/server.js\" \"cross-env NODE_ENV=development webpack serve --open\"",
+    "dev": "concurrently \"cross-env NODE_ENV=development nodemon /index.js\" \"cross-env NODE_ENV=development webpack serve --open\"",
     "gulp-prod": "node_modules/.bin/gulp prod",
     "gulp-dev": "node_modules/.bin/gulp dev"
   },

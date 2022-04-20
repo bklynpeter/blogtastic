@@ -2,9 +2,9 @@
 const path = require('path');
 const express = require('express');
 // const bloggerRouter = require('./routes/bloggerRouter');
-const router = require('./routes/bloggerRouter');
+const router = require('./server/routes/bloggerRouter');
 // const blogpostRouter = require('./routes/blogpostRouter');
-const connect = require('./connect');
+const connect = require('./server/connect');
 const bodyParser = require('body-parser');
 
 // connection
