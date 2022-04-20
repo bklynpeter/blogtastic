@@ -28,6 +28,21 @@ bloggerRouter.get('/:id',
     }
 );
 
+bloggerRouter.put('/:id',
+  bloggerController.updateBlogger,
+  (req, res) => {
+    console.log('result: ', res.locals.updatedBlogger)
+      res.status(200).json(res.locals.updatedBlogger);
+    }
+);
+
+bloggerRouter.delete('/:id',
+  bloggerController.updateBlogger,
+  (req, res) => {
+    console.log('deleted: ', res.locals.deletedBlogger)
+      res.status(200).json(res.locals.deletedBlogger);
+    }
+);
 
 // router.put('/:id',
 // bloggerController.updateBlogger,

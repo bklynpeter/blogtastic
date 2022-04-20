@@ -13,7 +13,6 @@ const bloggerController = {
             });
         } 
         const newBlogger = { firstName, lastName, bio }
-        
         Blogger.create(newBlogger, (err, newBlogger) => {
             if(err){
                 return next('Error in createBlogger: ', err)
@@ -22,12 +21,10 @@ const bloggerController = {
             }
         }) 
         res.locals.newBlogger = newBlogger;
-    
         next();
     },
 
     findBlogger: (req, res, next) => {
-        console.log(req.params.id)
         Blogger.findById(req.params.id, (err, foundBlogger) => {
             if(err){
                 return next({
@@ -60,7 +57,47 @@ const bloggerController = {
         });
     },
 
-   
+    updateBlogger: (req, res, next) => {
+        console.log('update blogger')
+        const { firstName, lastName, bio } = req.body
+        const update = {firstName, lastName, bio}
+        Blogger.findOneAndUpdate(req.params.id, update, (err, updatedBlogger) => {
+            if(err){
+                return next({
+                log: 'There\'s an error in updateBlogger',
+                status: 500,
+                message: {err: 'Missing or incorrect info to update blogger.'}
+                })
+            } else {
+                res.locals.updatedBlogger = updatedBlogger;
+                console.log('res.locals.foundBlogger', res.locals.updatedBlogger)
+            }
+            next();
+        });
+    },
+
+    deleteBlogger: (req, res, next) => {
+        console.log('delete blogger')
+        Blogger.deleteOne(req.params.id, (err, deletedBlogger) => {
+            if(err){
+                return next({
+                log: 'There\'s an error in deleteBlogger',
+                status: 500,
+                message: {err: 'Missing or incorrect info to update blogger.'}
+                })
+            } else if(!deletedBlogger) {
+                return next({
+                    log: 'There\'s an error in deleteBlogger',
+                    status: 500,
+                    message: {err: 'ID not found; cannot delete blogger.'}
+                    })
+            } else {
+                res.locals.deletedBlogger = deletedBlogger;
+                console.log('res.locals.foundBlogger', res.locals.deletedBlogger)
+            }
+            next();
+        });
+    },
 };
 
 module.exports = bloggerController;
